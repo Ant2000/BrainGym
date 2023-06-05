@@ -21,18 +21,20 @@ void setupHeartRate() {
     pox.setIRLedCurrent(MAX30102_LED_CURR_7_6MA);
     pox.setOnBeatDetectedCallback(onBeatDetected);
 
-    xTaskCreate(updateHeartRate, "Heart", 4096, NULL, 10, NULL);
+    xTaskCreate(updateHeartRate, "Heart", 8192, NULL, 20, NULL);
 }
 
 void updateHeartRate(void *args) {
-    pox.update();
-    if (millis() - lastReport > 1000) {
-        Serial.print("Heart rate:");
-        Serial.print(pox.getHeartRate());
-        Serial.print("bpm / SpO2:");
-        Serial.print(pox.getSpO2());
-        Serial.print("%");
-        lastReport = millis();
+    while (1) {
+        pox.update();
+        if (millis() - lastReport > 1000) {
+            Serial.print("Heart rate:");
+            Serial.print(pox.getHeartRate());
+            Serial.print("bpm / SpO2:");
+            Serial.print(pox.getSpO2());
+            Serial.print("%");
+            lastReport = millis();
+        }
     }
 }
 }
