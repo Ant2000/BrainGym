@@ -175,11 +175,10 @@ void setup()
     Serial.begin(115200);
     wifiManager.setSaveConfigCallback(saveConfigCallback);
     wifiManager.addParameter(&custom_blynk_token);
-    connectToBlynk();
-
     GPIOHandler::setupGPIO();
     LCD::setupLCD();
     HeartRate::setupHeartRate();
+    connectToBlynk();
     xTaskCreate(blynkConnectionTask, "blynkConnectionTask", 10000, NULL, 10, NULL);
 }
 

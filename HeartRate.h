@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <MAX30102_PulseOximeter.h>
 
 #include "definations.h"
 

@@ -90,8 +90,7 @@ namespace LCD
 
     void setupLCD()
     {
-        Wire.begin(LCD_SDA_PIN, LCD_SCL_PIN);
-        lcd.init();
+        lcd.init(LCD_SDA_PIN, LCD_SCL_PIN);
         lcd.backlight();
         xTaskCreate(updateLCD, "LCD Update", 2048, NULL, 12, NULL);
     }
